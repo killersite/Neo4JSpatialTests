@@ -1,0 +1,16 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-19 11:28:02
+project --topLevelPackage com.ex --projectName Neo4JSpatialTests --java 6 --packaging JAR
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+entity jpa --class ~.domain.Restaurant --activeRecord false --testAutomatically true
+repository jpa --interface ~.repository.RestaurantRepository --entity ~.domain.Restaurant
+service --interface ~.service.RestaurantService --entity ~.domain.Restaurant
+entity jpa --class ~.domain.Venue --activeRecord false --testAutomatically true
+repository jpa --interface ~.repository.VenueRepository --entity ~.domain.Venue
+service --interface ~.service.VenueService --entity ~.domain.Venue
+backup
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-19 11:34:34
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-19 11:43:20
+test integration --entity ~.domain.Restaurant
+test mock --entity ~.domain.Restaurant
+backup

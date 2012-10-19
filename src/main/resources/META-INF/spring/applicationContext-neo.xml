@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/data/neo4j"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/data/neo4j http://www.springframework.org/schema/data/neo4j/spring-neo4j-2.0.xsd">
+
+    <!-- 
+    http://www.cakesolutions.net/teamblogs/2012/05/23/enabling-neo4j-web-admin-tool-on-the-embedded-server-using-spring-data/
+    This additional config lets us use the Neo4j admin console 
+    Neo4j admin console should be available at http://127.0.0.1:7474/
+    -->
+    <!-- 
+    <beans:bean id="graphDatabaseService" class="org.neo4j.kernel.EmbeddedGraphDatabase">
+        <beans:constructor-arg value="target/db-neocitytime1"/>
+    </beans:bean>
+    
+    <config graphDatabaseService="graphDatabaseService"/>
+    
+    <beans:bean id="config" class="com.ex.repository.Neo4jServerConfigurator">
+        <beans:constructor-arg ref="graphDatabaseService"/>
+        <beans:constructor-arg>
+            <beans:map>
+                <beans:entry key="enable_remote_shell" value="true"/>
+            </beans:map>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <beans:bean id="serverWrapper" class="org.neo4j.server.WrappingNeoServerBootstrapper" init-method="start" destroy-method="stop">
+        <beans:constructor-arg ref="graphDatabaseService"/>
+        <beans:constructor-arg ref="config"/>
+    </beans:bean>
+	 -->
+ 
+    <!--If we're not bothered about the management console we can just use this -->
+    <config storeDirectory="target/db-neocitytime2" entityManagerFactory="entityManagerFactory"/>
+	<repositories base-package="com.ex.neorepository"/>
+
+</beans:beans>
