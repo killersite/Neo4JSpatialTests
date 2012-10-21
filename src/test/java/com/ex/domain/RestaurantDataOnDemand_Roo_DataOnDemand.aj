@@ -33,19 +33,19 @@ privileged aspect RestaurantDataOnDemand_Roo_DataOnDemand {
     
     public Restaurant RestaurantDataOnDemand.getNewTransientRestaurant(int index) {
         Restaurant obj = new Restaurant();
-        setLatLon(obj, index);
         setName(obj, index);
+        setWkt(obj, index);
         return obj;
-    }
-    
-    public void RestaurantDataOnDemand.setLatLon(Restaurant obj, int index) {
-        String latLon = "latLon_" + index;
-        obj.setLatLon(latLon);
     }
     
     public void RestaurantDataOnDemand.setName(Restaurant obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
+    }
+    
+    public void RestaurantDataOnDemand.setWkt(Restaurant obj, int index) {
+        String wkt = "wkt_" + index;
+        obj.setWkt(wkt);
     }
     
     public Restaurant RestaurantDataOnDemand.getSpecificRestaurant(int index) {

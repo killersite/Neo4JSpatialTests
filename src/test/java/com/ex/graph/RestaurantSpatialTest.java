@@ -1,5 +1,6 @@
 package com.ex.graph;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.junit.internal.matchers.IsCollectionContaining.hasItems;
@@ -25,6 +26,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.ex.domain.Restaurant;
 import com.ex.domain.Venue;
+import com.ex.neorepository.RestaurantNeoRepository;
 import com.ex.neorepository.VenueNeoRepository;
 import com.ex.service.RestaurantService;
 
@@ -34,46 +36,27 @@ public class RestaurantSpatialTest extends AbstractTransactionalJUnit4SpringCont
 
 	@Autowired Neo4jTemplate template;
 	@Autowired RestaurantService restaurantService;
-    @Autowired PlatformTransactionManager transactionManager;
 
     Restaurant restaurant;
 
 	@Before
 	public void setUp() throws Exception {
     	restaurant = new Restaurant();
-    	restaurantService.save(restaurant);
-	}
-
-	@BeforeTransaction
-	public void cleanDb() {
-	    Neo4jHelper.cleanDb(template);
+    	restaurant.setName("test");
+    	restaurant.setWkt("POINT ( 16.5 56.5 )");
+    	restaurantService.saveRestaurant(restaurant);
 	}
 
 	@Test
-	public void test() {
-		Venue foundvenu = venueNeoRepository.findByName("test");
-		System.out.println("venu: " + foundvenu.getName());
+	public void testFindWithinDistance() {
+    	Iterable<Restaurant> venus = restaurantService.findWithinDistance(16,56,70);
+        assertThat(asCollection(venus), hasItems(restaurant));
+	}
 
-    	Iterable<Venue> venus = venueNeoRepository.findWithinDistance("VenueLocation", 16,56,70);
-        assertThat(asCollection(venus), hasItems(venue));
-
-        double lat = 16.0;
-		double lon = 56.0;
-		double distanceKm = 10;
-//		Iterable<Venue> results = venueNeoRepository.findWithinBoundingBox("VenueLocation", 55, 15, 57, 17);
-		Iterable<Venue> results = venueNeoRepository.findWithinDistance("VenueLocation", lat, lon, distanceKm);
-		System.out.println("results: " + asCollection(results));
-		
-		
-//		assertThat(asCollection(results), hasItems(venu));
-
-
-//		Restaurant restaurant = restaurantService.findRestaurant(Long.valueOf(1));
-//
-//		List<Restaurant> restaurants = restaurantService.findRestaurantNearby(lat, lon, distance);
-//		assertThat(asCollection(restaurants), hasItems(restaurant));
-		
-//		fail("Not yet implemented");
+	@Test
+	public void testFindByName() {
+		Restaurant foundvenu = restaurantService.findByName("test");
+		assertEquals("test", foundvenu.getName());
 	}
 
 }

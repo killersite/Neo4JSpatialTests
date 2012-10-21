@@ -15,12 +15,12 @@ privileged aspect Restaurant_Roo_JavaBean {
         this.name = name;
     }
     
-    public String Restaurant.getLatLon() {
-        return this.latLon;
+    public String Restaurant.getWkt() {
+        return this.wkt;
     }
     
-    public void Restaurant.setLatLon(String latLon) {
-        this.latLon = latLon;
+    public void Restaurant.setWkt(String wkt) {
+        this.wkt = wkt;
     }
     
 }

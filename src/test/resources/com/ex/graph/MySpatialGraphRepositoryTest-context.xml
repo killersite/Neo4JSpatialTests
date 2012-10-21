@@ -25,7 +25,7 @@
 	<bean id="graphDatabaseService" class="org.neo4j.test.ImpermanentGraphDatabase" destroy-method="shutdown"/>
 	<neo4j:config graphDatabaseService="graphDatabaseService"/>
  -->	
-    <neo4j:config storeDirectory="target/db-test" entityManagerFactory="entityManagerFactory" />
+    <neo4j:config storeDirectory="target/db-test" />
 	<neo4j:repositories base-package="com.ex.neorepository"/>
 	
 </beans>
