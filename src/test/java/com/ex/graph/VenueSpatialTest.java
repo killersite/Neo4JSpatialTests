@@ -29,10 +29,9 @@ import static org.junit.internal.matchers.IsCollectionContaining.hasItems;
 import static org.neo4j.helpers.collection.IteratorUtil.asCollection;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@TestExecutionListeners({CleanContextCacheTestExecutionListener.class, DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class})
-@ContextConfiguration(locations = {"MySpatialGraphRepositoryTest-context.xml"})
+@ContextConfiguration
 @Transactional
-public class MySpatialGraphRepositoryTest {
+public class VenueSpatialTest {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 

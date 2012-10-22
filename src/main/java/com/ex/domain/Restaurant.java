@@ -18,8 +18,8 @@ public class Restaurant {
 	@Indexed
 	private String name;
     
-    @Pattern(regexp = "^POINT \\( \\-?\\d+\\.\\d+?\\s*\\-?\\d+\\.\\d+ \\)$",
-            message="Only 'POINT ( <latitude> <longitude> )' are supported.")
+//    @Pattern(regexp = "^POINT \\( \\-?\\d+\\.\\d+?\\s*\\-?\\d+\\.\\d+ \\)$",
+//            message="Only 'POINT ( <latitude> <longitude> )' are supported.")
     @Indexed(indexType=IndexType.POINT, indexName="latLon")
     private String wkt; // POINT ( 51.746078 10.678711 ) 
 

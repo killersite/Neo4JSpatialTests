@@ -15,3 +15,4 @@ test integration --entity ~.domain.Restaurant
 test mock --entity ~.domain.Restaurant
 backup
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-19 17:50:48
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-21 01:44:40
